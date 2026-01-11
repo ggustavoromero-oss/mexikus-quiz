@@ -34,6 +34,17 @@
             text-align: center;
             margin-bottom: 40px;
         }
+
+        /* ESTILO NUEVO PARA EL LOGO */
+        .logo {
+            max-width: 200px; /* Ajusta el tamaño aquí si lo quieres más grande */
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         
         .header h1 {
             font-size: 2.5rem;
@@ -196,6 +207,8 @@
 <body>
     <div class="quiz-container">
         <div class="header">
+            <img src="Logo_MEXIKUS_bco.png" alt="Mexikus Logo" class="logo">
+            
             <h1>¿Qué Símbolo Azteca Llevas Dentro?</h1>
             <p>Descubre tu arquetipo ancestral y recibe un diseño exclusivo</p>
         </div>
@@ -204,7 +217,6 @@
             <div class="progress" id="progress"></div>
         </div>
         
-        <!-- Pregunta 1 -->
         <div class="question active" id="q1">
             <h3>1. ¿Qué valor representa más tu esencia?</h3>
             <div class="options">
@@ -223,7 +235,6 @@
             </div>
         </div>
         
-        <!-- Pregunta 2 -->
         <div class="question" id="q2">
             <h3>2. ¿Cómo describes tu estilo personal?</h3>
             <div class="options">
@@ -242,7 +253,6 @@
             </div>
         </div>
         
-        <!-- Pregunta 3 -->
         <div class="question" id="q3">
             <h3>3. En un desafío, tu enfoque es:</h3>
             <div class="options">
@@ -261,7 +271,6 @@
             </div>
         </div>
         
-        <!-- Pregunta 4 -->
         <div class="question" id="q4">
             <h3>4. ¿Qué frase te representa más?</h3>
             <div class="options">
@@ -280,7 +289,6 @@
             </div>
         </div>
         
-        <!-- Pregunta 5 -->
         <div class="question" id="q5">
             <h3>5. Tu energía se potencia más con:</h3>
             <div class="options">
@@ -299,17 +307,16 @@
             </div>
         </div>
         
-        <!-- RESULTADO -->
         <div id="result">
             <div class="result-symbol" id="resultSymbol">🐍</div>
             <h2 class="result-title" id="resultTitle">Tu símbolo es: Quetzalcóatl</h2>
             <p class="result-description" id="resultDescription">
-                Eres un alma en constante transformación. Como la serpiente emplumada, combinas la sabiduría de la tierra con la visión del cielo. Tu camino es de renovación continua y crecimiento consciente.
+                Eres un alma en constante transformación...
             </p>
             
             <div class="lead-form">
                 <h3>🚀 Recibe tu diseño exclusivo GRATIS</h3>
-                <p style="margin-bottom: 15px; color: #aaa;">Te crearemos un diseño personalizado con tu símbolo. Sin compromiso.</p>
+                <p style="margin-bottom: 15px; color: #aaa;">Te crearemos un diseño personalizado con tu símbolo.</p>
                 
                 <input type="text" id="userName" placeholder="Tu nombre completo" required>
                 <input type="email" id="userEmail" placeholder="Tu mejor email" required>
@@ -332,7 +339,7 @@
         // Variables globales
         let currentQuestion = 1;
         const totalQuestions = 5;
-        let scores = { Q: 0, C: 0, J: 0, A: 0 }; // Q=Quetzalcóatl, C=Calendario, J=Jaguar, A=Águila
+        let scores = { Q: 0, C: 0, J: 0, A: 0 };
         
         // Mapeo de símbolos
         const symbols = {
@@ -340,28 +347,28 @@
                 emoji: '🐍',
                 name: 'Quetzalcóatl',
                 title: 'La Serpiente Emplumada',
-                description: 'Eres un alma en constante transformación. Como la serpiente emplumada, combinas la sabiduría de la tierra con la visión del cielo. Tu camino es de renovación continua y crecimiento consciente. Ideal para quienes buscan reinventarse con sabiduría ancestral.',
+                description: 'Eres un alma en constante transformación. Como la serpiente emplumada, combinas la sabiduría de la tierra con la visión del cielo. Tu camino es de renovación continua y crecimiento consciente.',
                 color: '#27ae60'
             },
             'C': {
                 emoji: '⏳',
                 name: 'Calendario Azteca',
                 title: 'El Orden Cósmico',
-                description: 'Tu esencia busca armonía y significado. Como el calendario azteca, comprendes que todo en el universo tiene su ciclo y razón. Eres estructurado, profundo y conectado con los ritmos naturales. Perfecto para mentes analíticas que valoran el orden y la tradición.',
+                description: 'Tu esencia busca armonía y significado. Como el calendario azteca, comprendes que todo en el universo tiene su ciclo y razón. Eres estructurado y profundo.',
                 color: '#e67e22'
             },
             'J': {
                 emoji: '🐆',
                 name: 'Guerrero Jaguar',
                 title: 'El Poder Nocturno',
-                description: 'Tu fuerza es silenciosa pero imparable. Como el jaguar en la noche, ves donde otros están ciegos y actúas con precisión letal. Representas el coraje, la estrategia y el poder interior que emerge en los desafíos. Para los que enfrentan la vida con valentía.',
+                description: 'Tu fuerza es silenciosa pero imparable. Como el jaguar en la noche, ves donde otros están ciegos y actúas con precisión letal. Representas el coraje y la estrategia.',
                 color: '#2c3e50'
             },
             'A': {
                 emoji: '🦅',
                 name: 'Águila Solar',
                 title: 'La Visión Elevada',
-                description: 'Vuelas alto y ves lo que otros no pueden. Como el águila solar, tienes perspectiva, libertad y una conexión directa con lo divino. Tu camino es de expansión, claridad y liderazgo inspirador. Ideal para visionarios y emprendedores.',
+                description: 'Vuelas alto y ves lo que otros no pueden. Como el águila solar, tienes perspectiva, libertad y una conexión directa con lo divino. Ideal para visionarios.',
                 color: '#f1c40f'
             }
         };
@@ -397,23 +404,17 @@
             // Opciones de pregunta
             document.querySelectorAll('.option').forEach(option => {
                 option.addEventListener('click', function() {
-                    // Remover selección anterior en esta pregunta
                     const question = this.closest('.question');
                     question.querySelectorAll('.option').forEach(opt => {
                         opt.classList.remove('selected');
                     });
-                    
-                    // Seleccionar esta opción
                     this.classList.add('selected');
-                    
-                    // Habilitar siguiente
                     nextBtn.disabled = false;
                 });
             });
             
             // Botón siguiente
             nextBtn.addEventListener('click', function() {
-                // Verificar si hay opción seleccionada en la pregunta actual
                 const currentQ = document.getElementById(`q${currentQuestion}`);
                 const selectedOption = currentQ.querySelector('.option.selected');
                 
@@ -422,131 +423,9 @@
                     return;
                 }
                 
-                // Sumar puntos si hay selección
                 if (selectedOption) {
                     const points = JSON.parse(selectedOption.getAttribute('data-points'));
                     for (const symbol in points) {
                         scores[symbol] += points[symbol];
                     }
                 }
-                
-                if (currentQuestion < totalQuestions) {
-                    // Ir a siguiente pregunta
-                    document.getElementById(`q${currentQuestion}`).classList.remove('active');
-                    currentQuestion++;
-                    document.getElementById(`q${currentQuestion}`).classList.add('active');
-                    updateProgress();
-                    nextBtn.disabled = true; // Deshabilitar hasta seleccionar
-                } else {
-                    // Mostrar resultado
-                    showResult();
-                }
-            });
-            
-            // Botón anterior
-            prevBtn.addEventListener('click', function() {
-                if (currentQuestion > 1) {
-                    document.getElementById(`q${currentQuestion}`).classList.remove('active');
-                    currentQuestion--;
-                    document.getElementById(`q${currentQuestion}`).classList.add('active');
-                    updateProgress();
-                    
-                    // Restar puntos de la pregunta que retrocedemos
-                    const currentQ = document.getElementById(`q${currentQuestion}`);
-                    const selectedOption = currentQ.querySelector('.option.selected');
-                    if (selectedOption) {
-                        const points = JSON.parse(selectedOption.getAttribute('data-points'));
-                        for (const symbol in points) {
-                            scores[symbol] -= points[symbol];
-                        }
-                    }
-                }
-            });
-            
-            // Envío de formulario
-            submitBtn.addEventListener('click', function() {
-                const name = document.getElementById('userName').value;
-                const email = document.getElementById('userEmail').value;
-                const phone = document.getElementById('userPhone').value;
-                
-                if (!name || !email) {
-                    alert('Por favor completa al menos tu nombre y email.');
-                    return;
-                }
-                
-                // Determinar símbolo ganador
-                let winner = 'Q';
-                let maxScore = scores.Q;
-                
-                for (const symbol in scores) {
-                    if (scores[symbol] > maxScore) {
-                        maxScore = scores[symbol];
-                        winner = symbol;
-                    }
-                }
-                
-                // Datos para enviar
-                const leadData = {
-                    name: name,
-                    email: email,
-                    phone: phone || 'No proporcionado',
-                    symbol: symbols[winner].name,
-                    symbolCode: winner,
-                    scores: scores,
-                    timestamp: new Date().toISOString()
-                };
-                
-                // Aquí iría la integración con tu backend
-                console.log('Lead capturado:', leadData);
-                
-                // Cambiar botón a éxito
-                submitBtn.textContent = '✓ ¡Diseño en camino!';
-                submitBtn.style.background = 'linear-gradient(45deg, #27ae60, #2ecc71)';
-                submitBtn.disabled = true;
-                
-                // Mensaje de agradecimiento
-                setTimeout(() => {
-                    alert(`¡Gracias ${name}! Tu diseño de ${symbols[winner].name} está en proceso. Te contactaremos en 24h.`);
-                }, 500);
-            });
-        }
-        
-        function showResult() {
-            // Ocultar preguntas y botones
-            document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
-            document.querySelector('.nav-buttons').style.display = 'none';
-            document.querySelector('.progress-bar').style.display = 'none';
-            
-            // Determinar símbolo ganador
-            let winner = 'Q';
-            let maxScore = scores.Q;
-            
-            for (const symbol in scores) {
-                if (scores[symbol] > maxScore) {
-                    maxScore = scores[symbol];
-                    winner = symbol;
-                }
-            }
-            
-            const symbolData = symbols[winner];
-            
-            // Mostrar resultado
-            resultSymbol.textContent = symbolData.emoji;
-            resultSymbol.style.color = symbolData.color;
-            resultTitle.textContent = `Tu símbolo es: ${symbolData.name}`;
-            resultTitle.style.color = symbolData.color;
-            resultDescription.textContent = symbolData.description;
-            
-            // Mostrar sección de resultado
-            resultDiv.style.display = 'block';
-            
-            // Mostrar puntuaciones en consola (para debugging)
-            console.log('Puntuaciones finales:', scores);
-            console.log('Símbolo ganador:', symbolData.name);
-        }
-        
-        // Para Divi: Añadir este código en un módulo de código HTML
-        // y conectar el formulario a tu email/webhook
-    </script>
-</body>
-</html>
