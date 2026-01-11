@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mexikus - Descubre tu Símbolo Azteca</title>
     <style>
+        /* ESTILOS GENERALES */
         * {
             margin: 0;
             padding: 0;
@@ -13,37 +14,53 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            /* CAMBIO: Fondo con animación de movimiento */
+            background: linear-gradient(-45deg, #000000, #1a1a2e, #0f0f13, #0a0a0a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             color: #fff;
             min-height: 100vh;
             padding: 20px;
+        }
+
+        /* DEFINICIÓN DE LA ANIMACIÓN DEL FONDO */
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
         
         .quiz-container {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03); 
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); 
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        /* ESTILO NUEVO PARA EL LOGO */
+        /* ESTILO DEL LOGO */
         .logo {
-            max-width: 200px; /* Ajusta el tamaño aquí si lo quieres más grande */
+            max-width: 250px;
             width: 100%;
             height: auto;
             margin-bottom: 20px;
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
         }
         
         .header h1 {
@@ -60,8 +77,9 @@
             font-size: 1.1rem;
         }
         
+        /* ESTILOS DE PREGUNTAS Y OPCIONES */
         .question {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
             padding: 25px;
             border-radius: 15px;
             margin-bottom: 25px;
@@ -86,7 +104,7 @@
         }
         
         .option {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             padding: 18px;
             border-radius: 10px;
             cursor: pointer;
@@ -95,12 +113,12 @@
         }
         
         .option:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             transform: translateY(-3px);
         }
         
         .option.selected {
-            background: rgba(248, 198, 48, 0.2);
+            background: rgba(248, 198, 48, 0.15);
             border-color: #f8c630;
         }
         
@@ -137,6 +155,7 @@
             transform: none;
         }
         
+        /* RESULTADOS Y FORMULARIO */
         #result {
             text-align: center;
             display: none;
@@ -161,7 +180,7 @@
         }
         
         .lead-form {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
             padding: 25px;
             border-radius: 15px;
             margin-top: 30px;
@@ -172,10 +191,14 @@
             padding: 15px;
             margin: 10px 0;
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #333;
+            background: #111;
             color: white;
             font-size: 1rem;
+        }
+        
+        .lead-form input::placeholder {
+            color: #666;
         }
         
         .lead-form button {
@@ -217,215 +240,4 @@
             <div class="progress" id="progress"></div>
         </div>
         
-        <div class="question active" id="q1">
-            <h3>1. ¿Qué valor representa más tu esencia?</h3>
-            <div class="options">
-                <div class="option" data-points='{"Q": 3, "C": 1, "J": 2, "A": 0}'>
-                    <span class="symbol-emoji">🔄</span> Transformación y sabiduría (Renovarse o morir)
-                </div>
-                <div class="option" data-points='{"Q": 1, "C": 3, "J": 1, "A": 2}'>
-                    <span class="symbol-emoji">⚖️</span> Orden y conexión cósmica (Todo tiene su tiempo)
-                </div>
-                <div class="option" data-points='{"Q": 2, "C": 1, "J": 3, "A": 1}'>
-                    <span class="symbol-emoji">🛡️</span> Poder y valentía interior (Fuerza en la oscuridad)
-                </div>
-                <div class="option" data-points='{"Q": 1, "C": 2, "J": 1, "A": 3}'>
-                    <span class="symbol-emoji">🌄</span> Libertad y perspectiva elevada (Ver más allá)
-                </div>
-            </div>
-        </div>
-        
-        <div class="question" id="q2">
-            <h3>2. ¿Cómo describes tu estilo personal?</h3>
-            <div class="options">
-                <div class="option" data-points='{"Q": 3, "C": 0, "J": 2, "A": 1}'>
-                    <span class="symbol-emoji">🎨</span> Místico y fluido, como el agua que se adapta
-                </div>
-                <div class="option" data-points='{"Q": 1, "C": 3, "J": 1, "A": 2}'>
-                    <span class="symbol-emoji">🧩</span> Estructurado y significativo, cada pieza cuenta
-                </div>
-                <div class="option" data-points='{"Q": 2, "C": 1, "J": 3, "A": 1}'>
-                    <span class="symbol-emoji">⚡</span> Audaz y poderoso, que impone respeto
-                </div>
-                <div class="option" data-points='{"Q": 1, "C": 2, "J": 1, "A": 3}'>
-                    <span class="symbol-emoji">🦅</span> Elegante y visionario, siempre mirando alto
-                </div>
-            </div>
-        </div>
-        
-        <div class="question" id="q3">
-            <h3>3. En un desafío, tu enfoque es:</h3>
-            <div class="options">
-                <div class="option" data-points='{"Q": 3, "C": 1, "J": 2, "A": 0}'>
-                    <span class="symbol-emoji">🌀</span> Adaptarte y transformar el problema
-                </div>
-                <div class="option" data-points='{"Q": 0, "C": 3, "J": 1, "A": 2}'>
-                    <span class="symbol-emoji">📐</span> Analizar y encontrar el orden lógico
-                </div>
-                <div class="option" data-points='{"Q": 2, "C": 1, "J": 3, "A": 1}'>
-                    <span class="symbol-emoji">💥</span> Enfrentarlo con fuerza directa
-                </div>
-                <div class="option" data-points='{"Q": 1, "C": 2, "J": 1, "A": 3}'>
-                    <span class="symbol-emoji">👁️</span> Elevarte y ver la solución desde arriba
-                </div>
-            </div>
-        </div>
-        
-        <div class="question" id="q4">
-            <h3>4. ¿Qué frase te representa más?</h3>
-            <div class="options">
-                <div class="option" data-points='{"Q": 3, "C": 1, "J": 2, "A": 0}'>
-                    <span class="symbol-emoji">🌱</span> "Renacer de las cenizas con sabiduría nueva"
-                </div>
-                <div class="option" data-points='{"Q": 0, "C": 3, "J": 1, "A": 2}'>
-                    <span class="symbol-emoji">⏳</span> "Todo en el universo tiene su ciclo y razón"
-                </div>
-                <div class="option" data-points='{"Q": 2, "C": 1, "J": 3, "A": 1}'>
-                    <span class="symbol-emoji">🐾</span> "La verdadera fuerza es silenciosa pero definitiva"
-                </div>
-                <div class="option" data-points='{"Q": 1, "C": 2, "J": 1, "A": 3}'>
-                    <span class="symbol-emoji">🌅</span> "Volar alto para ver lo que otros no ven"
-                </div>
-            </div>
-        </div>
-        
-        <div class="question" id="q5">
-            <h3>5. Tu energía se potencia más con:</h3>
-            <div class="options">
-                <div class="option" data-points='{"Q": 3, "C": 0, "J": 2, "A": 1}'>
-                    <span class="symbol-emoji">🌊</span> El agua fluyendo (Cambio, intuición)
-                </div>
-                <div class="option" data-points='{"Q": 0, "C": 3, "J": 1, "A": 2}'>
-                    <span class="symbol-emoji">🗿</span> La tierra firme (Estabilidad, raíces)
-                </div>
-                <div class="option" data-points='{"Q": 2, "C": 1, "J": 3, "A": 0}'>
-                    <span class="symbol-emoji">🌑</span> La noche oscura (Misterio, poder)
-                </div>
-                <div class="option" data-points='{"Q": 1, "C": 2, "J": 0, "A": 3}'>
-                    <span class="symbol-emoji">🌞</span> El amanecer (Claridad, nuevos comienzos)
-                </div>
-            </div>
-        </div>
-        
-        <div id="result">
-            <div class="result-symbol" id="resultSymbol">🐍</div>
-            <h2 class="result-title" id="resultTitle">Tu símbolo es: Quetzalcóatl</h2>
-            <p class="result-description" id="resultDescription">
-                Eres un alma en constante transformación...
-            </p>
-            
-            <div class="lead-form">
-                <h3>🚀 Recibe tu diseño exclusivo GRATIS</h3>
-                <p style="margin-bottom: 15px; color: #aaa;">Te crearemos un diseño personalizado con tu símbolo.</p>
-                
-                <input type="text" id="userName" placeholder="Tu nombre completo" required>
-                <input type="email" id="userEmail" placeholder="Tu mejor email" required>
-                <input type="tel" id="userPhone" placeholder="WhatsApp (opcional pero recomendado)">
-                
-                <button id="submitLead">Quiero mi diseño exclusivo</button>
-                <p style="margin-top: 15px; font-size: 0.9rem; color: #888;">
-                    Al enviar, aceptas recibir tu diseño personalizado. No spam, solo arte.
-                </p>
-            </div>
-        </div>
-        
-        <div class="nav-buttons">
-            <button id="prevBtn" disabled>← Anterior</button>
-            <button id="nextBtn">Siguiente →</button>
-        </div>
-    </div>
-
-    <script>
-        // Variables globales
-        let currentQuestion = 1;
-        const totalQuestions = 5;
-        let scores = { Q: 0, C: 0, J: 0, A: 0 };
-        
-        // Mapeo de símbolos
-        const symbols = {
-            'Q': {
-                emoji: '🐍',
-                name: 'Quetzalcóatl',
-                title: 'La Serpiente Emplumada',
-                description: 'Eres un alma en constante transformación. Como la serpiente emplumada, combinas la sabiduría de la tierra con la visión del cielo. Tu camino es de renovación continua y crecimiento consciente.',
-                color: '#27ae60'
-            },
-            'C': {
-                emoji: '⏳',
-                name: 'Calendario Azteca',
-                title: 'El Orden Cósmico',
-                description: 'Tu esencia busca armonía y significado. Como el calendario azteca, comprendes que todo en el universo tiene su ciclo y razón. Eres estructurado y profundo.',
-                color: '#e67e22'
-            },
-            'J': {
-                emoji: '🐆',
-                name: 'Guerrero Jaguar',
-                title: 'El Poder Nocturno',
-                description: 'Tu fuerza es silenciosa pero imparable. Como el jaguar en la noche, ves donde otros están ciegos y actúas con precisión letal. Representas el coraje y la estrategia.',
-                color: '#2c3e50'
-            },
-            'A': {
-                emoji: '🦅',
-                name: 'Águila Solar',
-                title: 'La Visión Elevada',
-                description: 'Vuelas alto y ves lo que otros no pueden. Como el águila solar, tienes perspectiva, libertad y una conexión directa con lo divino. Ideal para visionarios.',
-                color: '#f1c40f'
-            }
-        };
-        
-        // Elementos DOM
-        const progressBar = document.getElementById('progress');
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        const resultDiv = document.getElementById('result');
-        const resultSymbol = document.getElementById('resultSymbol');
-        const resultTitle = document.getElementById('resultTitle');
-        const resultDescription = document.getElementById('resultDescription');
-        const submitBtn = document.getElementById('submitLead');
-        
-        // Inicializar quiz
-        updateProgress();
-        setupEventListeners();
-        
-        function updateProgress() {
-            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
-            progressBar.style.width = `${progress}%`;
-            
-            prevBtn.disabled = currentQuestion === 1;
-            
-            if (currentQuestion === totalQuestions) {
-                nextBtn.textContent = 'Ver Resultado';
-            } else {
-                nextBtn.textContent = 'Siguiente →';
-            }
-        }
-        
-        function setupEventListeners() {
-            // Opciones de pregunta
-            document.querySelectorAll('.option').forEach(option => {
-                option.addEventListener('click', function() {
-                    const question = this.closest('.question');
-                    question.querySelectorAll('.option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                    this.classList.add('selected');
-                    nextBtn.disabled = false;
-                });
-            });
-            
-            // Botón siguiente
-            nextBtn.addEventListener('click', function() {
-                const currentQ = document.getElementById(`q${currentQuestion}`);
-                const selectedOption = currentQ.querySelector('.option.selected');
-                
-                if (!selectedOption && currentQuestion <= totalQuestions) {
-                    alert('Por favor selecciona una opción antes de continuar.');
-                    return;
-                }
-                
-                if (selectedOption) {
-                    const points = JSON.parse(selectedOption.getAttribute('data-points'));
-                    for (const symbol in points) {
-                        scores[symbol] += points[symbol];
-                    }
-                }
+        <div class="
