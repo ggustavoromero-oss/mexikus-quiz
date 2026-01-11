@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mexikus - Descubre tu Símbolo Azteca</title>
     <style>
-        /* ESTILOS GENERALES */
+        /* --- ESTILOS GENERALES --- */
         * {
             margin: 0;
             padding: 0;
@@ -14,8 +14,8 @@
         }
         
         body {
-            /* CAMBIO: Fondo con animación de movimiento */
-            background: linear-gradient(-45deg, #000000, #1a1a2e, #0f0f13, #0a0a0a);
+            /* FONDO NEGRO CON ANIMACIÓN ELEGANTE */
+            background: linear-gradient(-45deg, #000000, #1a1a2e, #111111, #0a0a0a);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             color: #fff;
@@ -23,31 +23,24 @@
             padding: 20px;
         }
 
-        /* DEFINICIÓN DE LA ANIMACIÓN DEL FONDO */
         @keyframes gradientBG {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .quiz-container {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(10px);
+            background: rgba(20, 20, 20, 0.6); /* Fondo semitransparente oscuro */
+            backdrop-filter: blur(15px);       /* Efecto vidrio */
             border-radius: 20px;
             padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8); 
         }
         
-        /* ESTILO DEL LOGO */
+        /* --- LOGO --- */
         .logo {
             max-width: 250px;
             width: 100%;
@@ -60,16 +53,17 @@
         
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 10px;
+            /* Texto degradado dorado/rojo */
             background: linear-gradient(45deg, #f8c630, #e74c3c);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent;
+            color: transparent; 
         }
         
         .header p {
@@ -77,25 +71,26 @@
             font-size: 1.1rem;
         }
         
-        /* ESTILOS DE PREGUNTAS Y OPCIONES */
+        /* --- PREGUNTAS --- */
         .question {
+            /* Caja de pregunta oscura */
             background: rgba(255, 255, 255, 0.05);
             padding: 25px;
             border-radius: 15px;
             margin-bottom: 25px;
             border-left: 4px solid #f8c630;
-            display: none;
+            display: none; /* Ocultas por defecto */
             animation: fadeIn 0.5s ease;
         }
         
         .question.active {
-            display: block;
+            display: block; /* Solo la activa se ve */
         }
         
         .question h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 20px;
-            color: #fff;
+            color: #eee;
         }
         
         .options {
@@ -104,29 +99,31 @@
         }
         
         .option {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.4);
             padding: 18px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
         .option:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+            border-color: #f8c630;
         }
         
         .option.selected {
-            background: rgba(248, 198, 48, 0.15);
+            background: rgba(248, 198, 48, 0.1);
             border-color: #f8c630;
         }
         
         .symbol-emoji {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-right: 10px;
         }
         
+        /* --- BOTONES DE NAVEGACIÓN --- */
         .nav-buttons {
             display: flex;
             justify-content: space-between;
@@ -135,27 +132,33 @@
         
         button {
             background: linear-gradient(45deg, #e74c3c, #f8c630);
-            color: white;
+            color: #000;
+            font-weight: 800;
             border: none;
             padding: 15px 30px;
-            border-radius: 10px;
+            border-radius: 50px; /* Botones redondeados */
             font-size: 1rem;
-            font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         button:hover {
             transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(248, 198, 48, 0.4);
         }
         
         button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
+            background: #444;
+            color: #888;
         }
         
-        /* RESULTADOS Y FORMULARIO */
+        /* --- RESULTADOS --- */
         #result {
             text-align: center;
             display: none;
@@ -164,6 +167,7 @@
         .result-symbol {
             font-size: 5rem;
             margin: 20px 0;
+            filter: drop-shadow(0 0 10px rgba(248, 198, 48, 0.3));
         }
         
         .result-title {
@@ -175,15 +179,17 @@
         .result-description {
             font-size: 1.1rem;
             line-height: 1.6;
-            color: #ccc;
+            color: #ddd;
             margin-bottom: 30px;
         }
         
+        /* --- FORMULARIO FINAL --- */
         .lead-form {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
             border-radius: 15px;
             margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .lead-form input {
@@ -195,26 +201,23 @@
             background: #111;
             color: white;
             font-size: 1rem;
+            outline: none;
         }
         
-        .lead-form input::placeholder {
-            color: #666;
+        .lead-form input:focus {
+            border-color: #f8c630;
         }
         
         .lead-form button {
             width: 100%;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
+        /* --- BARRA DE PROGRESO --- */
         .progress-bar {
-            height: 5px;
+            height: 4px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
+            border-radius: 2px;
             margin-bottom: 30px;
             overflow: hidden;
         }
@@ -222,16 +225,22 @@
         .progress {
             height: 100%;
             background: linear-gradient(90deg, #e74c3c, #f8c630);
-            width: 0%;
-            transition: width 0.5s ease;
+            width: 0%; /* Se llena con JS */
+            transition: width 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
+
     <div class="quiz-container">
+        
         <div class="header">
             <img src="Logo_MEXIKUS_bco.png" alt="Mexikus Logo" class="logo">
-            
             <h1>¿Qué Símbolo Azteca Llevas Dentro?</h1>
             <p>Descubre tu arquetipo ancestral y recibe un diseño exclusivo</p>
         </div>
@@ -240,4 +249,314 @@
             <div class="progress" id="progress"></div>
         </div>
         
-        <div class="
+        <div class="question active" id="q1">
+            <h3>1. ¿Qué valor representa más tu esencia?</h3>
+            <div class="options">
+                <div class="option" data-points='{"Q": 3, "C": 1, "J": 2, "A": 0}'>
+                    <span class="symbol-emoji">🔄</span> Transformación y sabiduría
+                </div>
+                <div class="option" data-points='{"Q": 1, "C": 3, "J": 1, "A": 2}'>
+                    <span class="symbol-emoji">⚖️</span> Orden y conexión cósmica
+                </div>
+                <div class="option" data-points='{"Q": 2, "C": 1, "J": 3, "A": 1}'>
+                    <span class="symbol-emoji">🛡️</span> Poder y valentía interior
+                </div>
+                <div class="option" data-points='{"Q": 1, "C": 2, "J": 1, "A": 3}'>
+                    <span class="symbol-emoji">🌄</span> Libertad y perspectiva elevada
+                </div>
+            </div>
+        </div>
+        
+        <div class="question" id="q2">
+            <h3>2. ¿Cómo describes tu estilo personal?</h3>
+            <div class="options">
+                <div class="option" data-points='{"Q": 3, "C": 0, "J": 2, "A": 1}'>
+                    <span class="symbol-emoji">🎨</span> Místico y fluido
+                </div>
+                <div class="option" data-points='{"Q": 1, "C": 3, "J": 1, "A": 2}'>
+                    <span class="symbol-emoji">🧩</span> Estructurado y significativo
+                </div>
+                <div class="option" data-points='{"Q": 2, "C": 1, "J": 3, "A": 1}'>
+                    <span class="symbol-emoji">⚡</span> Audaz y poderoso
+                </div>
+                <div class="option" data-points='{"Q": 1, "C": 2, "J": 1, "A": 3}'>
+                    <span class="symbol-emoji">🦅</span> Elegante y visionario
+                </div>
+            </div>
+        </div>
+        
+        <div class="question" id="q3">
+            <h3>3. En un desafío, tu enfoque es:</h3>
+            <div class="options">
+                <div class="option" data-points='{"Q": 3, "C": 1, "J": 2, "A": 0}'>
+                    <span class="symbol-emoji">🌀</span> Adaptarte y transformar el problema
+                </div>
+                <div class="option" data-points='{"Q": 0, "C": 3, "J": 1, "A": 2}'>
+                    <span class="symbol-emoji">📐</span> Analizar y encontrar el orden lógico
+                </div>
+                <div class="option" data-points='{"Q": 2, "C": 1, "J": 3, "A": 1}'>
+                    <span class="symbol-emoji">💥</span> Enfrentarlo con fuerza directa
+                </div>
+                <div class="option" data-points='{"Q": 1, "C": 2, "J": 1, "A": 3}'>
+                    <span class="symbol-emoji">👁️</span> Elevarte y ver la solución desde arriba
+                </div>
+            </div>
+        </div>
+        
+        <div class="question" id="q4">
+            <h3>4. ¿Qué frase te representa más?</h3>
+            <div class="options">
+                <div class="option" data-points='{"Q": 3, "C": 1, "J": 2, "A": 0}'>
+                    <span class="symbol-emoji">🌱</span> "Renacer de las cenizas con sabiduría"
+                </div>
+                <div class="option" data-points='{"Q": 0, "C": 3, "J": 1, "A": 2}'>
+                    <span class="symbol-emoji">⏳</span> "Todo en el universo tiene su ciclo"
+                </div>
+                <div class="option" data-points='{"Q": 2, "C": 1, "J": 3, "A": 1}'>
+                    <span class="symbol-emoji">🐾</span> "La verdadera fuerza es silenciosa"
+                </div>
+                <div class="option" data-points='{"Q": 1, "C": 2, "J": 1, "A": 3}'>
+                    <span class="symbol-emoji">🌅</span> "Volar alto para ver lo que otros no ven"
+                </div>
+            </div>
+        </div>
+        
+        <div class="question" id="q5">
+            <h3>5. Tu energía se potencia más con:</h3>
+            <div class="options">
+                <div class="option" data-points='{"Q": 3, "C": 0, "J": 2, "A": 1}'>
+                    <span class="symbol-emoji">🌊</span> El agua fluyendo (Cambio)
+                </div>
+                <div class="option" data-points='{"Q": 0, "C": 3, "J": 1, "A": 2}'>
+                    <span class="symbol-emoji">🗿</span> La tierra firme (Estabilidad)
+                </div>
+                <div class="option" data-points='{"Q": 2, "C": 1, "J": 3, "A": 0}'>
+                    <span class="symbol-emoji">🌑</span> La noche oscura (Misterio)
+                </div>
+                <div class="option" data-points='{"Q": 1, "C": 2, "J": 0, "A": 3}'>
+                    <span class="symbol-emoji">🌞</span> El amanecer (Claridad)
+                </div>
+            </div>
+        </div>
+        
+        <div id="result">
+            <div class="result-symbol" id="resultSymbol">?</div>
+            <h2 class="result-title" id="resultTitle">Calculando...</h2>
+            <p class="result-description" id="resultDescription">...</p>
+            
+            <div class="lead-form">
+                <h3>🚀 Recibe tu diseño exclusivo GRATIS</h3>
+                <p style="margin-bottom: 15px; color: #aaa;">Completa tus datos para enviarte tu resultado personalizado.</p>
+                
+                <input type="text" id="userName" placeholder="Tu nombre completo" required>
+                <input type="email" id="userEmail" placeholder="Tu mejor email" required>
+                <input type="tel" id="userPhone" placeholder="WhatsApp (opcional pero recomendado)">
+                
+                <button id="submitLead">Quiero mi diseño exclusivo</button>
+                <p style="margin-top: 15px; font-size: 0.8rem; color: #666;">
+                    Al enviar, aceptas recibir tu diseño. No spam.
+                </p>
+            </div>
+        </div>
+        
+        <div class="nav-buttons">
+            <button id="prevBtn" disabled>← Anterior</button>
+            <button id="nextBtn">Siguiente →</button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- CONFIGURACIÓN ---
+        let currentQuestion = 1;
+        const totalQuestions = 5;
+        let scores = { Q: 0, C: 0, J: 0, A: 0 };
+        const myEmail = "contacto@mexikus.fashion"; // TU EMAIL
+
+        // DATOS DE LOS SÍMBOLOS
+        const symbols = {
+            'Q': {
+                emoji: '🐍',
+                name: 'Quetzalcóatl',
+                title: 'La Serpiente Emplumada',
+                description: 'Eres un alma en constante transformación. Como la serpiente emplumada, combinas la sabiduría de la tierra con la visión del cielo. Tu camino es de renovación continua.',
+                color: '#27ae60'
+            },
+            'C': {
+                emoji: '⏳',
+                name: 'Calendario Azteca',
+                title: 'El Orden Cósmico',
+                description: 'Tu esencia busca armonía y significado. Comprendes que todo en el universo tiene su ciclo y razón. Eres estructurado y profundo.',
+                color: '#e67e22'
+            },
+            'J': {
+                emoji: '🐆',
+                name: 'Guerrero Jaguar',
+                title: 'El Poder Nocturno',
+                description: 'Tu fuerza es silenciosa pero imparable. Ves donde otros están ciegos y actúas con precisión. Representas el coraje y la estrategia.',
+                color: '#2c3e50'
+            },
+            'A': {
+                emoji: '🦅',
+                name: 'Águila Solar',
+                title: 'La Visión Elevada',
+                description: 'Vuelas alto y ves lo que otros no pueden. Tienes perspectiva, libertad y una conexión directa con lo divino. Ideal para visionarios.',
+                color: '#f1c40f'
+            }
+        };
+        
+        // ELEMENTOS
+        const progressBar = document.getElementById('progress');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const submitBtn = document.getElementById('submitLead');
+        
+        // INICIO
+        updateProgress();
+        setupEventListeners();
+        
+        function updateProgress() {
+            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Control de botones
+            prevBtn.disabled = currentQuestion === 1;
+            nextBtn.textContent = (currentQuestion === totalQuestions) ? 'Ver Resultado' : 'Siguiente →';
+            
+            // Ocultar botones en resultado
+            if(currentQuestion > totalQuestions) {
+                document.querySelector('.nav-buttons').style.display = 'none';
+            }
+        }
+        
+        function setupEventListeners() {
+            // Clic en opciones
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const parent = this.closest('.question');
+                    parent.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    nextBtn.disabled = false; // Activar botón
+                });
+            });
+            
+            // Botón Siguiente
+            nextBtn.addEventListener('click', () => {
+                const currentDiv = document.getElementById(`q${currentQuestion}`);
+                const selected = currentDiv.querySelector('.option.selected');
+                
+                if (!selected) {
+                    alert("Por favor selecciona una opción");
+                    return;
+                }
+                
+                // Sumar puntos
+                const points = JSON.parse(selected.getAttribute('data-points'));
+                for (let key in points) scores[key] += points[key];
+                
+                // Cambiar pantalla
+                currentDiv.classList.remove('active');
+                if (currentQuestion < totalQuestions) {
+                    currentQuestion++;
+                    const nextDiv = document.getElementById(`q${currentQuestion}`);
+                    nextDiv.classList.add('active');
+                    nextBtn.disabled = true; // Bloquear hasta elegir
+                    updateProgress();
+                } else {
+                    showResult();
+                }
+            });
+            
+            // Botón Anterior
+            prevBtn.addEventListener('click', () => {
+                if (currentQuestion > 1) {
+                    const currentDiv = document.getElementById(`q${currentQuestion}`);
+                    
+                    // Restar puntos de la actual antes de volver (si había selección)
+                    const selected = currentDiv.querySelector('.option.selected');
+                    if(selected) {
+                       const points = JSON.parse(selected.getAttribute('data-points'));
+                       for (let key in points) scores[key] -= points[key]; 
+                    }
+
+                    currentDiv.classList.remove('active');
+                    currentQuestion--;
+                    const prevDiv = document.getElementById(`q${currentQuestion}`);
+                    prevDiv.classList.add('active');
+                    
+                    // Restar puntos de la pregunta anterior para volver a sumarlos si cambia
+                    const prevSelected = prevDiv.querySelector('.option.selected');
+                    if(prevSelected) {
+                        const points = JSON.parse(prevSelected.getAttribute('data-points'));
+                        for (let key in points) scores[key] -= points[key];
+                    }
+                    
+                    updateProgress();
+                    nextBtn.disabled = false;
+                }
+            });
+            
+            // Enviar Formulario
+            submitBtn.addEventListener('click', () => {
+                const name = document.getElementById('userName').value;
+                const email = document.getElementById('userEmail').value;
+                const phone = document.getElementById('userPhone').value;
+                
+                if(!name || !email) {
+                    alert("Por favor llena nombre y email");
+                    return;
+                }
+                
+                submitBtn.textContent = "Enviando...";
+                submitBtn.disabled = true;
+                
+                // Calcular ganador final
+                let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+                
+                fetch(`https://formsubmit.co/ajax/${myEmail}`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        Nombre: name,
+                        Email: email,
+                        Telefono: phone,
+                        Resultado: symbols[winner].name,
+                        Fecha: new Date().toLocaleString()
+                    })
+                })
+                .then(r => r.json())
+                .then(data => {
+                    submitBtn.textContent = "¡Enviado!";
+                    submitBtn.style.background = "#27ae60";
+                    alert(`¡Gracias ${name}! Tu diseño de ${symbols[winner].name} está en camino.`);
+                })
+                .catch(err => {
+                    console.error(err);
+                    submitBtn.textContent = "Error";
+                    submitBtn.disabled = false;
+                    alert("Error de conexión. Intenta de nuevo.");
+                });
+            });
+        }
+        
+        function showResult() {
+            document.querySelector('.nav-buttons').style.display = 'none';
+            document.querySelector('.progress-bar').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            
+            // Calcular ganador
+            let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            const data = symbols[winner];
+            
+            document.getElementById('resultSymbol').textContent = data.emoji;
+            document.getElementById('resultSymbol').style.color = data.color;
+            document.getElementById('resultTitle').textContent = data.name;
+            document.getElementById('resultTitle').style.color = data.color;
+            document.getElementById('resultDescription').textContent = data.description;
+        }
+    </script>
+</body>
+</html>
