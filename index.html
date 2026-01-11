@@ -373,6 +373,21 @@
         let scores = { Q: 0, C: 0, J: 0, A: 0 };
         const myEmail = "contacto@mexikus.fashion"; // TU EMAIL
 
+        // --- FUNCIÓN PARA GENERAR PROMPT MIDJOURNEY ---
+        function generateMidjourneyPrompt(symbolCode, scores) {
+            const prompts = {
+                'Q': `quetzalcoatl feathered serpent as large central element for all-over print, intricate geometric patterns on scales, flowing body movement, black and terracotta red with gold accents, mayan aztec style, balanced composition for apparel, isolated on dark background --style raw --ar 2:3 --stylize 800`,
+                
+                'C': `aztec sun stone calendar as dominant centerpiece for all-over print, circular mandala pattern with precise glyphs, stone texture details, oxidized copper green and charcoal gray, symmetrical design, balanced layout for t-shirt --style raw --ar 2:3 --stylize 800`,
+                
+                'J': `aztec jaguar warrior mask as focal point for all-over print, fierce expression, tribal patterns radiating outward, obsidian black and amber yellow, powerful energy, balanced negative space --style raw --ar 2:3 --stylize 800`,
+                
+                'A': `mexican golden eagle with wings spread wide for all-over print, detailed feathers, solar halo effect, deep brown and sunset orange, heraldic style, balanced composition --style raw --ar 2:3 --stylize 800`
+            };
+            
+            return prompts[symbolCode] || prompts['Q'];
+        }
+
         // DATOS DE LOS SÍMBOLOS
         const symbols = {
             'Q': {
@@ -513,6 +528,10 @@
                 // Calcular ganador final
                 let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
                 
+                // Generar prompt Midjourney
+                const midjourneyPrompt = generateMidjourneyPrompt(winner, scores);
+                
+                // Enviar datos con FormSubmit
                 fetch(`https://formsubmit.co/ajax/${myEmail}`, {
                     method: 'POST',
                     headers: { 
@@ -520,18 +539,34 @@
                         'Accept': 'application/json'
                     },
                     body: JSON.stringify({
-                        Nombre: name,
-                        Email: email,
-                        Telefono: phone,
-                        Resultado: symbols[winner].name,
-                        Fecha: new Date().toLocaleString()
+                        _subject: `🎨 MEXIKUS - Nuevo Lead: ${name} - ${symbols[winner].name}`,
+                        _template: "table",
+                        _cc: email,
+                        
+                        // Datos principales
+                        "👤 NOMBRE": name,
+                        "📧 EMAIL": email,
+                        "📱 WHATSAPP": phone || "No proporcionado",
+                        "🎯 SÍMBOLO": `${symbols[winner].name} ${symbols[winner].emoji}`,
+                        "📅 FECHA": new Date().toLocaleString(),
+                        
+                        // Puntuaciones (para análisis interno)
+                        "📊 PUNTUACIONES": `Quetzalcóatl:${scores.Q} | Calendario:${scores.C} | Jaguar:${scores.J} | Águila:${scores.A}`,
+                        
+                        // PROMPT PARA MIDJOURNEY (¡LISTO PARA COPIAR Y PEGAR!)
+                        "🎨 PROMPT MIDJOURNEY (COPIAR Y PEGAR)": midjourneyPrompt,
+                        
+                        // Instrucciones rápidas
+                        "⚡ ACCIÓN REQUERIDA": "1. Copiar prompt en Midjourney | 2. Generar diseño (1 crédito) | 3. Contactar cliente en <2h",
+                        "💰 VALOR POTENCIAL": "$1,600 MXN",
+                        "🚀 PRIORIDAD": "Alta - Lead cualificado"
                     })
                 })
                 .then(r => r.json())
                 .then(data => {
                     submitBtn.textContent = "¡Enviado!";
                     submitBtn.style.background = "#27ae60";
-                    alert(`¡Gracias ${name}! Tu diseño de ${symbols[winner].name} está en camino.`);
+                    alert(`¡Gracias ${name}! Tu diseño de ${symbols[winner].name} está en camino. Te contactaremos en menos de 24 horas.`);
                 })
                 .catch(err => {
                     console.error(err);
